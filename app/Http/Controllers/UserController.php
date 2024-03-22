@@ -37,6 +37,10 @@ class UserController extends Controller
             return view('pages.dashboard.profile-page');
         }
 
+        function UserLogout(){
+            return redirect('/userLogin')->cookie('token','',-1);
+        }
+
 
 
     // Define a function named UserRegistration that takes a Request object as a parameter
@@ -66,31 +70,33 @@ class UserController extends Controller
 
         }
     }
+// Define a function named UserLogin which takes a Request object as input
+function UserLogin(Request $request){
+    // Search for a user with the provided email and password
+    $count = User::where("email", $request->input("email"))
+        ->where("password", "=", $request->input("password"))
+        ->select('id')->first();
 
-    function UserLogin(Request $request){
-        // Count the number of users matching the given email and password
-        $count = User::where("email", $request->input("email"))
-            ->where("password", "=", $request->input("password"))
-            ->count();
+    // Check if there is exactly one user matching the credentials
+    if ($count !== null) {
+        // If a single user is found, create a JWT token for the user's email and id
+        $token = JWTToken::CreateToken($request->input("email"),$count->id);
 
-        // Check if there is exactly one user matching the credentials
-        if ($count == 1) {
-            // If the count is exactly 1, create a JWT token for the user's email
-            $token = JWTToken::CreateToken($request->input("email"));
-
-            // Respond with a JSON indicating successful login along with the token
-            return response()->json([
-                "status" => "success",
-                "message" => "User Login Successful",
-            ], 200)->cookie('token',$token,60*24*30,'/');
-        } else {
-            // If no user or more than one user matches the credentials, return unauthorized status
-            return response()->json([
-                "status" => "Login Failed",
-                "message" => "User Unauthorized"
-            ], 401);
-        }
+        // Respond with a JSON indicating successful login along with the token
+        // Set a cookie named 'token' with the JWT token, valid for 30 days
+        return response()->json([
+            "status" => "success",
+            "message" => "User Login Successful",
+        ], 200)->cookie('token',$token,60*24*30,'/');
+    } else {
+        // If no user or more than one user matches the credentials, return unauthorized status
+        return response()->json([
+            "status" => "Login Failed",
+            "message" => "User Unauthorized"
+        ], 401);
     }
+}
+
 
     function SendOTPCode(Request $request){
 
@@ -132,8 +138,8 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'OTP Verification Successful',
-                'token' => $token
-            ],200);
+                
+            ],200)->cookie('token',$token,60*24*30);
 
         }
         else{
