@@ -37,10 +37,6 @@ class UserController extends Controller
             return view('pages.dashboard.profile-page');
         }
 
-        function UserLogout(){
-            return redirect('/userLogin')->cookie('token','',-1);
-        }
-
 
 
     // Define a function named UserRegistration that takes a Request object as a parameter
@@ -170,21 +166,11 @@ function UserLogin(Request $request){
     }
 
    
- /* 
+
     function UserLogout(){
-        return redirect('/')->cookie('token','',-1);
+        return redirect('/userLogin')->cookie('token','',-1);
     }
 
-
-    function UserProfile(Request $request){
-        $email=$request->header('email');
-        $user=User::where('email','=',$email)->first();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Request Successful',
-            'data' => $user
-        ],200);
-    } */
 
     function UserProfile(Request $request){
         $email=$request->header('email');
