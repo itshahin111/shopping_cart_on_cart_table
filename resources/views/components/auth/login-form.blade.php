@@ -30,37 +30,40 @@
 
 
 <script>
-async function SubmitLogin() {
-    // Get values from email and password fields
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
+    async function SubmitLogin() {
+        // Get values from email and password fields
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
 
-    // Basic form validation
-    if (email.length === 0) {
-        errorToast("Email is required");
-    } else if (password.length === 0) {
-        errorToast("Password is required");
-    } else {
-        // Show loader while processing the request
-        showLoader();
-        try {
-            // Send a POST request to the server for user login
-            let res = await axios.post("/user-login", { email: email, password: password });
-            // Check the response from the server
-            if (res.status === 200 && res.data['status'] === 'success') {
-                // If login is successful, redirect the user to the dashboard
-                window.location.href = "/dashboard";
-            } else {
-                // If login fails, display an error message
-                errorToast(res.data['message']);
+        // Basic form validation
+        if (email.length === 0) {
+            errorToast("Email is required");
+        } else if (password.length === 0) {
+            errorToast("Password is required");
+        } else {
+            // Show loader while processing the request
+            showLoader();
+            try {
+                // Send a POST request to the server for user login
+                let res = await axios.post("/user-login", {
+                    email: email,
+                    password: password
+                });
+                // Check the response from the server
+                if (res.status === 200 && res.data['status'] === 'success') {
+                    // If login is successful, redirect the user to the dashboard
+                    window.location.href = "/products";
+                } else {
+                    // If login fails, display an error message
+                    errorToast(res.data['message']);
+                }
+            } catch (error) {
+                // If an error occurs during the request, display a generic error message
+                errorToast("An error occurred. Please try again later.");
+            } finally {
+                // Hide loader after request completes
+                hideLoader();
             }
-        } catch (error) {
-            // If an error occurs during the request, display a generic error message
-            errorToast("An error occurred. Please try again later.");
-        } finally {
-            // Hide loader after request completes
-            hideLoader();
         }
     }
-}
 </script>

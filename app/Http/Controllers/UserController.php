@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    
+
         function LoginPage():View{
             return view('pages.auth.login-page');
         }
@@ -118,7 +118,7 @@ function UserLogin(Request $request){
             ]);
         }
     }
-    
+
     function VerifyOTP(Request $request){
         $email=$request->input('email');
         $otp=$request->input('otp');
@@ -134,7 +134,7 @@ function UserLogin(Request $request){
             return response()->json([
                 'status' => 'success',
                 'message' => 'OTP Verification Successful',
-                
+
             ],200)->cookie('token',$token,60*24*30);
 
         }
@@ -145,7 +145,7 @@ function UserLogin(Request $request){
             ],200);
         }
     }
-    
+
 
     function ResetPassword(Request $request){
         try{
@@ -165,7 +165,7 @@ function UserLogin(Request $request){
         }
     }
 
-   
+
 
     function UserLogout(){
         return redirect('/userLogin')->cookie('token','',-1);
@@ -179,7 +179,7 @@ function UserLogin(Request $request){
             'status' => 'success',
             'message' => 'Request Successful',
             'data' => $user
-        ],200);        
+        ],200);
     }
     function UpdateProfile(Request $request){
         try{
@@ -205,6 +205,6 @@ function UserLogin(Request $request){
                 'message' => 'Something Went Wrong',
             ],200);
         }
-    } 
+    }
 
 }
