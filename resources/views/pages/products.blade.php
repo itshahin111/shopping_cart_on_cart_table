@@ -85,14 +85,14 @@
 
                 $(".preloader").delay(90).fadeOut(100).addClass('loaded');
                 if (res.status === 200) {
-                    alert("Product added to cart successfully");
+                    successToast("Product added to cart successfully");
                 }
             } catch (e) {
                 if (e.response && e.response.status === 401) {
                     sessionStorage.setItem("last_location", window.location.href);
                     window.location.href = "/login";
                 } else {
-                    alert("Error adding product to cart");
+                    errorToast("Error adding product to cart");
                 }
             }
         }
