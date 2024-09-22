@@ -73,6 +73,8 @@ class ProductController extends Controller
         return ResponseHelper::Out('error', 'Cart item not found', 404);
     }
 
+
+
     public function DeleteCartList(Request $request, $id): JsonResponse
     {
         $user_id = $request->header('id');

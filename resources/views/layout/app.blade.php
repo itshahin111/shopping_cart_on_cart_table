@@ -7,14 +7,14 @@
     <title>X-Bakery</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/toastify.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
-    <script src="{{ asset('assets/js/toastify-js.js') }}"></script>
-    <script src="{{ asset('assets/js/axios.min.js') }}"></script>
-    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/toastify.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/toastify-js.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/config.js') }}"></script>
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/ionicons.min.css') }}">
@@ -41,13 +41,13 @@
     </div>
 
     <!-- Correct script order and tags -->
-    {{-- <script src="{{ asset('assets/js/parallax.js') }}"></script> --}}
-    <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/axios.min.js') }}"></script>
     <script src="{{ asset('assets/js/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/parallax-plugin.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
 </body>
 
 </html>
